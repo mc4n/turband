@@ -10,7 +10,7 @@
 		<div class="card">
 
 		<div class="card-body text-center">
-		<a href="/define?term={{$def["word"]}}&exact=1" class="btn bg-primary text-black">{{ $def["word"] }}</a>
+		<a href="{{route('define.search', ["term"=>$def["word"], "exact"=>"1"] ) }}"] )}}" class="btn bg-primary text-black">{{ $def["word"] }}</a>
 		<br>
 		<p class="text-black">{{ $def["definition"] }}</p>
 
@@ -32,13 +32,12 @@
 		</div>
 	@endforeach
 
-
 </div>
 
-	@empty($viewData["definitions"])
+	@if($viewData["definitions"]->count()==0)
 		'{{$viewData["search-term"]}}' kelimesi icin hic bir sonuc bulunamadi! Bir tane olusturmaya ne dersin?
 		<br>
-		<a href="/add?word={{$viewData["search-term"]}}" class="btn bg-primary text-white">Olustur</a>
+		<a href="{{route('define.add', ["word"=>$viewData["search-term"]] ) }}"] )}}" class="btn bg-primary text-white">Olustur</a>
 
 	@endempty
 </div>

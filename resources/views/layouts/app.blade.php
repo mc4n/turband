@@ -41,6 +41,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 <div class="navbar-nav ms-auto">
 <a class="nav-link active" href="{{ route('home.index') }}">Anasayfa</a>
 <a class="nav-link active" href="{{ route('home.about') }}">Hakkında</a>
+<a class="nav-link active" href="{{ route('define.add') }}">+ Tanim Ekle</a>
 </div>
 </div>
 </div>
