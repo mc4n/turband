@@ -13,4 +13,8 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name("home.index")
 
 Route::get('/about', 'App\Http\Controllers\HomeController@about')->name("home.about");
 
-Route::get('/search', 'App\Http\Controllers\SearchController@index')->name("search.index");
+Route::get('/define', 'App\Http\Controllers\DefineController@search')->name("define.search");
+
+Route::get('/add', 'App\Http\Controllers\DefineController@add')->name("define.add");
+
+Route::post('/add', 'App\Http\Controllers\DefineController@add_post')->name("define.add_post");

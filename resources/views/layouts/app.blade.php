@@ -20,7 +20,7 @@
 <a class="navbar-brand" href="{{ route('home.index') }}">Turban</a>
 
 
-<form class="form-inline my-2 my-lg-0" action="/search" method="get">
+<form class="form-inline my-2 my-lg-0" action="{{ route('define.search') }}" method="get">
 <div class="input-group">
   <input name="term" class="form-control input-lg" type="term" placeholder="Aramak için bir kelime girin" aria-label="Search">
   <button class="btn btn-success" type="submit">Ara</button>
