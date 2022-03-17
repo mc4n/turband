@@ -1,17 +1,16 @@
 @extends('layouts.app')
 @section('title', $viewData["title"])
-@section('subtitle', $viewData["subtitle"])
+@section('subtitle', $viewData["is_exact"] == 1? "'".$viewData["search-term"]."'"." kelimesi" : $viewData["subtitle"])
 @section('content')
 <div class="container">
 <div class="row">
- 
 
 	@foreach ($viewData["definitions"] as $def)
 		<div class="col-md-4 col-lg-3 mb-2">
 		<div class="card">
 
 		<div class="card-body text-center">
-		<a href="" class="btn bg-primary text-black">{{ $def["word"] }}</a>
+		<a href="/define?term={{$def["word"]}}&exact=1" class="btn bg-primary text-black">{{ $def["word"] }}</a>
 		<br>
 		<p class="text-black">{{ $def["definition"] }}</p>
 

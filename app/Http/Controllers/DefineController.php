@@ -53,24 +53,25 @@ class DefineController extends Controller
         $viewData["title"] = $viewData["subtitle"]." - Turban";
 
         
-        $a = function ($var) use($request) { 
-            return str_contains($var["word"],$request->input('term'));
+        $exact_ = $request->input('exact', 0);
+
+        $comp_func = function ($var) use($request, $exact_) {
+
+            if ($exact_ != null && $exact_ != 0) 
+                return $var["word"] == $request->input('term');
+            else
+                return str_starts_with($var["word"],$request->input('term'));
         };
 
-        $defs = array_filter(DefineController::$definitions, $a);
-         usort($defs, 
-            function($a, $b){
-                return strcmp($a["word"], $b["word"]);
-            }
+        $defs = array_filter(DefineController::$definitions, $comp_func);
+        
+        usort($defs, function($a, $b){ return strcmp($a["word"], $b["word"]); }
 );
-         $viewData["definitions"] = $defs;
+        $viewData["definitions"] = $defs;
         
         $viewData["search-term"] = $request->input('term'); 
 
-        //array_search($request->input('term'), array_column(, 'word'));
-
-
-            // $request->input('term');
+        $viewData["is_exact"] = $exact_ == 1;
 
         return view('home.search')->with("viewData", $viewData);
     }
