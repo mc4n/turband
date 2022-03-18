@@ -5,14 +5,13 @@ use Illuminate\Http\Request;
 
 use App\Models\WordDefinition;
 
+
+const PAGE_LEN = 1;
+
 class DefineController extends Controller
 {
     public function add(Request $request)
     {
-        /*if ($request->input('word').trim('')=='') {
-            return back()->withInput();
-        }*/
-
         $word = $request->input('word');
 
         $viewData = [];
@@ -38,7 +37,7 @@ class DefineController extends Controller
         }
     }
 
-
+  
     public function search(Request $request)
     {
         if ($request->input('term').trim('')=='') {
@@ -56,7 +55,7 @@ class DefineController extends Controller
                 ? WordDefinition::where('word', $search_term_)
                 : WordDefinition::where('word', 'like', $search_term_.'%');
 
-        $defs = $defs->orderBy('word', 'ASC')->get();
+        $defs = $defs->orderBy('word', 'ASC')->paginate(PAGE_LEN);//get();
 
         $viewData["definitions"] = $defs;
     
