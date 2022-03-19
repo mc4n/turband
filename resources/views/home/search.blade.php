@@ -27,7 +27,7 @@
 					<b>(0)</b>
 				</div>
 	<br>
-			by <a href="">admin</a>
+			by <a href="">{{$def->user?->name?:"<null>"}}</a>
 			[01.01.2001]
 			</div>
 		</div>

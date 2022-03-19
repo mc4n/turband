@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('word', 48)->index('word-text');
             $table->string('definition', 512);
             $table->text('example', 1024)->nullable();
-            $table->integer('user_id')->unsigned()->index("word-user")->nullable();
+            $table->integer('user_id')->unsigned()->index("word-user");
             $table->foreign('user_id')->references('id')->on('users');      
             $table->timestamps();
         });

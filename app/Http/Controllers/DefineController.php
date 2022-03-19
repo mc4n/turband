@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 
 use App\Models\WordDefinition;
 
+use Illuminate\Support\Facades\Auth;
+
+
 
 const PAGE_LEN = 1;
 
@@ -19,16 +22,21 @@ class DefineController extends Controller
         $viewData["title"] = $viewData["subtitle"]." - Turban";
         $viewData ["word"]=  $word;
 
+
         return view('home.add')->with("viewData", $viewData);
     }
 
     public function add_post(Request $request)
     {
+        
         $word = new WordDefinition;
 
         $word->word = $request->input('word');
         $word->definition = $request->input('definition');
         $word->example = $request->input('example');
+        $word->user_id =  Auth::user()->id;
+
+        WordDefinition::validate($request);
 
         if ($word->save() > 0) {
             return redirect()->action('App\Http\Controllers\DefineController@search', ['term'=>$word->word, 'exact' => 1]);

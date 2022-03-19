@@ -5,6 +5,8 @@ use App\Models\WordDefinition;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 class AdminWordController extends Controller
 {
 	public function index()
@@ -24,6 +26,7 @@ class AdminWordController extends Controller
         $word->word = $request->input('word');
         $word->definition = $request->input('definition');
         $word->example = $request->input('example');
+        $word->user_id =  Auth::user()->id;
 
         $word->save();
 

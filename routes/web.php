@@ -7,7 +7,11 @@ Route::get('/about', 'App\Http\Controllers\HomeController@about')->name("home.ab
 
 Route::get('/define', 'App\Http\Controllers\DefineController@search')->name("define.search");
 Route::get('/add', 'App\Http\Controllers\DefineController@add')->name("define.add");
-Route::post('/add', 'App\Http\Controllers\DefineController@add_post')->name("define.add_post");
+
+Route::middleware('auth')->group(function () {
+	Route::post('/add', 'App\Http\Controllers\DefineController@add_post')->name("define.add_post");
+});
+
 
 Route::middleware('admin')->group(function () {
 
