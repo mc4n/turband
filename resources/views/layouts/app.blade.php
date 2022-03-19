@@ -41,7 +41,25 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 <div class="navbar-nav ms-auto">
 <a class="nav-link active" href="{{ route('home.index') }}">Anasayfa</a>
 <a class="nav-link active" href="{{ route('home.about') }}">Hakkında</a>
+
 <a class="nav-link active" href="{{ route('define.add') }}">+ Tanim Ekle</a>
+
+<div class="vr bg-white mx-2 d-none d-lg-block"></div>
+@guest
+  <a class="nav-link active" href="{{ route('login') }}">Giris</a>
+  <a class="nav-link active" href="{{ route('register') }}">Kayit</a>
+  @else
+
+  <a href="" class="nav-link">{{Auth::user()->name }}</a>
+
+  <form id="logout" action="{{ route('logout') }}" method="POST">
+    <a role="button" class="nav-link active"
+    onclick="document.getElementById('logout').submit();">Logout</a>
+    @csrf
+  </form>
+@endguest
+
+
 </div>
 </div>
 </div>

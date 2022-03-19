@@ -2,13 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-*/
-
-
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name("home.index");
 
 Route::get('/about', 'App\Http\Controllers\HomeController@about')->name("home.about");
@@ -31,3 +24,5 @@ Route::delete('/admin/words/{id}/delete', 'App\Http\Controllers\Admin\AdminWordC
 Route::get('/admin/word/{id}/edit', 'App\Http\Controllers\Admin\AdminWordController@edit')->name("admin.word.edit");
 
 Route::put('/admin/word/{id}/update', 'App\Http\Controllers\Admin\AdminWordController@update')->name("admin.word.update");
+
+Auth::routes();
