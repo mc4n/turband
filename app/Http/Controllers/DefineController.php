@@ -1,13 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\WordDefinition;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Gate;
 
 const PAGE_LEN = 8;
 
@@ -28,7 +26,6 @@ class DefineController extends Controller
 
     public function add_post(Request $request)
     {
-        
         $word = new WordDefinition;
 
         $word->word = $request->input('word');
@@ -45,6 +42,58 @@ class DefineController extends Controller
         }
     }
 
+    public function edit(Request $request, $id)
+    {
+        $word = WordDefinition::findOrFail($id);
+
+        if (!Gate::allows('update-word', $word)) {
+            abort(403);
+        }
+
+        $viewData = [];
+        $viewData["subtitle"] = "Tanim Guncelle";
+        $viewData["title"] = $viewData["subtitle"]." - Turban";
+
+        $viewData ["word"]=  $word;
+
+        return view('home.update')->with("viewData", $viewData);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $word = WordDefinition::findOrFail($id);
+
+        if (!Gate::allows('update-word', $word)) {
+            abort(403);
+        }
+
+        WordDefinition::validate($request);
+
+        $word->word = $request->input('word');
+        $word->definition = $request->input('definition');
+        $word->example = $request->input('example');
+
+        WordDefinition::validate($request);
+
+        if ($word->save() > 0) {
+            return redirect()->action('App\Http\Controllers\DefineController@search', ['term'=>$word->word, 'exact' => 1]);
+        } else {
+            return back()->withInput();
+        }
+    }
+
+    public function delete($id)
+    {
+        $word = WordDefinition::findOrFail($id);
+
+        if (!Gate::allows('update-word', $word)) {
+            abort(403);
+        }
+
+        WordDefinition::destroy($id);
+        
+        return back();
+    }
   
     public function search(Request $request)
     {    

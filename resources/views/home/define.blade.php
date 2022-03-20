@@ -42,9 +42,15 @@
 			</div>
 
 			@if($def->user == Auth::user())
-			   <div class="card-body bg-primary text-center">	
-					<button href="" >Guncelle</button>
-					<button href="" >Sil</button>
+			   <div class="card-body text-center">	
+					<a href="{{ route('define.edit', $def->id) }}" >Guncelle</a>
+					
+					<form action="{{ route('define.delete', $def->id)}}" method="POST">
+						@csrf
+						@method('DELETE')
+						<button type="submit" >Sil</button>
+					</form>
+
 			   </div>
 			@endif
 

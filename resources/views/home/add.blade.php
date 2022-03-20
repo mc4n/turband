@@ -19,7 +19,7 @@
   <div class="row">
 
   Kelime: 
-  <input type="text" name="word" class="form-control input-lg" value ="{{$viewData["word"]?:old('word')}}">
+  <input type="text" name="word" class="form-control input-lg" value ='{{$viewData["word"]?:old('word')}}'>
 
   Tanim: 
   <textarea name="definition" class="form-control input-lg">{{old('definition')}}</textarea>

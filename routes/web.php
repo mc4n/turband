@@ -9,7 +9,12 @@ Route::get('/define', 'App\Http\Controllers\DefineController@search')->name("def
 Route::get('/add', 'App\Http\Controllers\DefineController@add')->name("define.add");
 
 Route::middleware('auth')->group(function () {
+
 	Route::post('/add', 'App\Http\Controllers\DefineController@add_post')->name("define.add_post");
+
+	Route::get('/update/{id}', 'App\Http\Controllers\DefineController@edit')->name("define.edit");
+	Route::put('/update/{id}', 'App\Http\Controllers\DefineController@update')->name("define.update");
+	Route::delete('/delete/{id}', 'App\Http\Controllers\DefineController@delete')->name("define.delete");
 });
 
 
