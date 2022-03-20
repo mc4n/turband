@@ -52,11 +52,11 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
   <a class="nav-link active" href="{{ route('register') }}">Kayit</a>
   @else
 
-  <a href="" class="nav-link">{{Auth::user()->name }}</a>
+  <a class="nav-link active" href={{route('define.search', ["owner"=>Auth::user()->id])}} class="nav-link">{{Auth::user()->name }}</a>
 
   <form id="logout" action="{{ route('logout') }}" method="POST">
-    <a role="button" class="nav-link active"
-    onclick="document.getElementById('logout').submit();">Logout</a>
+    <a role="button" class="nav-link"
+    onclick="document.getElementById('logout').submit();">Cikis yap</a>
     @csrf
   </form>
 @endguest

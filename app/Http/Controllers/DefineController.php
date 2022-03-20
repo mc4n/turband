@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-const PAGE_LEN = 1;
+const PAGE_LEN = 8;
 
 class DefineController extends Controller
 {
@@ -47,29 +47,36 @@ class DefineController extends Controller
 
   
     public function search(Request $request)
-    {
-        if ($request->input('term').trim('')=='') {
+    {    
+        $search_term_ = $request->input("term");
+        $exact_ = $request->input('exact', 0);
+        $owner_id_ = $request->input("owner", 0);
+
+        if ($search_term_.trim('') == '' && $owner_id_ == null) {
             return back()->withInput();
         }
 
-        $search_term_ = $request->input("term");
-        $exact_ = $request->input('exact', 0);
-
         $viewData = [];
-        $viewData["subtitle"] = "'".$search_term_."' için arama sonuclari";
-        $viewData["title"] = $viewData["subtitle"]." - Turban";
         
-        $defs = $exact_ != null && $exact_ != 0
+        
+       if($owner_id_ == null){
+            $viewData["subtitle"] = $exact_ != 0? "'".$search_term_."' icin tanimlar":"'".$search_term_."' için arama sonuclari";
+            $defs = $exact_ != null && $exact_ != 0
                 ? WordDefinition::where('word', $search_term_)
                 : WordDefinition::where('word', 'like', $search_term_.'%');
+        }
+       else{
+            $viewData["subtitle"] = "kullanici tanimlari"; 
+            $defs = WordDefinition::where('user_id', $owner_id_);
+        }
 
-        $defs = $defs->orderBy('word', 'ASC')->paginate(PAGE_LEN);//get();
-
-        $viewData["definitions"] = $defs;
-    
+        $defs = $defs->orderBy('word', 'ASC')->paginate(PAGE_LEN);
+        
+        $viewData["title"] = $viewData["subtitle"]." - Turban";
         $viewData["search-term"] = $search_term_;
-
         $viewData["is_exact"] = $exact_ == 1;
+        $viewData["owner_id"] = $owner_id_;
+        $viewData["definitions"] = $defs;
 
         return view('home.search')->with("viewData", $viewData);
     }

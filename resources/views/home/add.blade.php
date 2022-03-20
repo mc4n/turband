@@ -19,15 +19,15 @@
   <div class="row">
 
   Kelime: 
-  <input type="text" name="word" class="form-control input-lg" value ="{{$viewData["word"]}}">
+  <input type="text" name="word" class="form-control input-lg" value ="{{$viewData["word"]?:old('word')}}">
 
   Tanim: 
-  <textarea name="definition" class="form-control input-lg"></textarea>
+  <textarea name="definition" class="form-control input-lg">{{old('definition')}}</textarea>
 
   Ornek Kullanim: 
-  <textarea type="text" name="example" class="form-control input-lg"></textarea>
+  <textarea type="text" name="example" class="form-control input-lg">{{old('example')}}</textarea>
 
-  <button class="btn btn-success" type="submit">Ekle</button>
+  <button class="btn btn-success" type="submit">Tamamla</button>
  </div>
 
 </form>

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', $viewData["title"])
-@section('subtitle', $viewData["is_exact"] == 1? "'".$viewData["search-term"]."'"." kelimesi" : $viewData["subtitle"])
+@section('subtitle', $viewData["subtitle"])
 
 @section('content')
-<div class="container">
 
+<div class="container">
 
 <div class="row">
 
@@ -13,11 +13,11 @@
 		<div class="card">
 
 		<div class="card-body text-center">
-			<a href="{{route('define.search', ["term"=>$def["word"], "exact"=>"1"] ) }}"] )}}" class="btn bg-primary text-black">{{ $def["word"] }}</a>
+			<a href={{route('define.search', ["term"=>$def["word"], "exact"=>"1"]) }} class="btn bg-primary text-black">{{ $def["word"] }}</a>
 			<br>
 			<p class="text-black">{{ $def["definition"] }}</p>
 
-			<i class="">"{{ $def["example"] }}"</i>
+			<i>"{{ $def["example"] }}"</i>
 			<br>
 			<br>
 				<div>
@@ -27,7 +27,7 @@
 					<b>(0)</b>
 				</div>
 	<br>
-			by <a href="">{{$def->user?->name?:"<null>"}}</a>
+			by <a href={{route('define.search', ["owner"=>$def->user->id])}}>{{$def->user?->name?:"<null>"}}</a>
 			[01.01.2001]
 			</div>
 		</div>
@@ -36,7 +36,14 @@
 
 {{-- Pagination --}}
 <div class="d-flex justify-content-center">
-    {!! $viewData["definitions"]->appends(["term" => $viewData["search-term"], "exact" => $viewData["is_exact"]!=1?null:1])->links() !!}
+    {!! $viewData["definitions"]->appends(
+
+    	$viewData["owner_id"]==null
+    	?["term" => $viewData["search-term"], "exact" => $viewData["is_exact"]!=1?null:1]
+    	:["owner" => $viewData["owner_id"]]
+
+
+    )->links() !!}
 </div>
 
 </div>
