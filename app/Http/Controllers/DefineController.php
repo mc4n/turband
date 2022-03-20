@@ -78,6 +78,6 @@ class DefineController extends Controller
         $viewData["owner_id"] = $owner_id_;
         $viewData["definitions"] = $defs;
 
-        return view('home.search')->with("viewData", $viewData);
+        return view('home.define')->with("viewData", $viewData);
     }
 }

@@ -10,26 +10,44 @@
 
 	@foreach ($viewData["definitions"] as $def)
 	<div class="col-md-4 col-lg-3 mb-2">
+			
 		<div class="card">
 
-		<div class="card-body text-center">
-			<a href={{route('define.search', ["term"=>$def["word"], "exact"=>"1"]) }} class="btn bg-primary text-black">{{ $def["word"] }}</a>
-			<br>
-			<p class="text-black">{{ $def["definition"] }}</p>
+			<div class="card-body text-center">	
 
-			<i>"{{ $def["example"] }}"</i>
-			<br>
-			<br>
+				<a href={{route('define.search', ["term"=>$def["word"], "exact"=>"1"]) }} class="btn bg-primary text-black"><b>{{ $def["word"] }}</b></a>
+				
+				<br>
+
+				<p class="text-black">{{ $def["definition"] }}</p>
+
+				<p><i>"{{ $def["example"] }}"</i></p>
+				
+				
+
+				<hr>
+				<a href={{route('define.search', ["owner"=>$def->user->id])}}><b>{{$def->user?->name?:"<null>"}}</b></a>
+				| <i>{{ Carbon\Carbon::parse($def->created_at)->format('d M Y') }}</i>
+
+
+				<br><br>
 				<div>
 					<button >+</button>
-					<b>(0)</b>
+					(0)
 					<button >-</button>
-					<b>(0)</b>
+					(0)
 				</div>
-	<br>
-			by <a href={{route('define.search', ["owner"=>$def->user->id])}}>{{$def->user?->name?:"<null>"}}</a>
-			[01.01.2001]
+				
+
 			</div>
+
+			@if($def->user == Auth::user())
+			   <div class="card-body bg-primary text-center">	
+					<button href="" >Guncelle</button>
+					<button href="" >Sil</button>
+			   </div>
+			@endif
+
 		</div>
 	</div>
 	@endforeach
