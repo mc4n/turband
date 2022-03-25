@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WordDefinition;
+use App\Models\Vote;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,6 +87,19 @@ class DefineController extends Controller
 
         WordDefinition::destroy($id);
         
+        return back();
+    }
+
+    public function vote(Request $request, $word_definition_id, $is_like)
+    {
+        $vote = new Vote;
+        $vote->is_like = $is_like;
+        $vote->word_definition_id = $word_definition_id;
+        $vote->user_id =  Auth::user()->id;
+
+        Vote::validate($request);
+
+        $vote->save();
         return back();
     }
   

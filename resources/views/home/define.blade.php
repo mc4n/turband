@@ -23,26 +23,44 @@
 
 				<p><i>"{{ $def["example"] }}"</i></p>
 				
-				
-
 				<hr>
 				<a href={{route('define.search', ["owner"=>$def->user->id])}}><b>{{$def->user?->name?:"<null>"}}</b></a>
 				| <i>{{ Carbon\Carbon::parse($def->created_at)->format('d M Y') }}</i>
 
-
 				<br><br>
 				<div>
-					<button >+</button>
-					(0)
-					<button >-</button>
-					(0)
+					<div style="float:left;" >
+						<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>1])}}" method="POST">
+						@csrf
+						<button type="submit" >+</button>
+						<label>({{ 
+								$def->votes->filter(function ($item) {
+								    return $item->is_like == 1; }
+								)->values()->count()
+
+						 }})</label>
+						</form>
+						
+					</div>
+
+					<div style="float:left;">
+						<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>0])}}" method="POST">
+						@csrf
+						<button type="submit" >-</button>
+						
+						<label>({{ 
+								$def->votes->filter(function ($item) {
+								    return $item->is_like == 0; }
+								)->values()->count()
+
+						 }})</label>
+
+						</form>
+					</div>
 				</div>
-				
 
-			</div>
-
-			@if($def->user == Auth::user())
-			   <div class="card-body text-center">	
+				@if($def->user == Auth::user())
+			   	<div class="card-body text-center">	
 					<a href="{{ route('define.edit', $def->id) }}" >Guncelle</a>
 					
 					<form action="{{ route('define.delete', $def->id)}}" method="POST">
@@ -51,8 +69,12 @@
 						<button type="submit" >Sil</button>
 					</form>
 
-			   </div>
+			   	</div>
 			@endif
+
+			</div>
+
+			
 
 		</div>
 	</div>

@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function word_definitions()
+    {
+        return $this->hasMany(WordDefinition::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }
