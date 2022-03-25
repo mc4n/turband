@@ -42,9 +42,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 <a class="nav-link active" href="{{ route('home.index') }}">Anasayfa</a>
 <a class="nav-link active" href="{{ route('home.about') }}">Hakkında</a>
 
-@auth
 <a class="nav-link active" href="{{ route('define.add') }}">+ Tanim Ekle</a>
-@endauth
 
 <div class="vr bg-white mx-2 d-none d-lg-block"></div>
 @guest
@@ -80,9 +78,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 <div class="copyright py-4 text-center text-white">
 <div class="container">
 <small>
-Copyright - <a class="text-reset fw-bold text-decoration-none" target="_blank"
-href="#">
-Turban</small>
+Copyright © 2022 - Turban</small>
 </div>
 </div>
 <!-- footer -->

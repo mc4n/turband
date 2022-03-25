@@ -44,7 +44,7 @@
   Ornek Kullanim: 
   <textarea disabled="true" type="text" name="example"></textarea>
 
-  <i> Tanim ekleyebilmek icin lutfen giris yapin.</i>
+  <i> Tanim ekleyebilmek icin lutfen <a href='{{route('login')}}'>giris</a> yapin.</i>
   
  </div>
 

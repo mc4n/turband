@@ -46,9 +46,7 @@ class DefineController extends Controller
     {
         $word = WordDefinition::findOrFail($id);
 
-        if (!Gate::allows('update-word', $word)) {
-            abort(403);
-        }
+        Gate::authorize('update', $word);
 
         $viewData = [];
         $viewData["subtitle"] = "Tanim Guncelle";
@@ -63,9 +61,7 @@ class DefineController extends Controller
     {
         $word = WordDefinition::findOrFail($id);
 
-        if (!Gate::allows('update-word', $word)) {
-            abort(403);
-        }
+        Gate::authorize('update', $word);
 
         WordDefinition::validate($request);
 
@@ -86,9 +82,7 @@ class DefineController extends Controller
     {
         $word = WordDefinition::findOrFail($id);
 
-        if (!Gate::allows('update-word', $word)) {
-            abort(403);
-        }
+        Gate::authorize('delete', $word);
 
         WordDefinition::destroy($id);
         

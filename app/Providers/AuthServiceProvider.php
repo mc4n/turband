@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\WordDefinition;
 use App\Models\User;
 
+use App\Policies\WordDefinitionPolicy;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        WordDefinition::class => WordDefinitionPolicy::class,
     ];
 
     /**
@@ -27,9 +29,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        Gate::define('update-word', function (User $user, WordDefinition $word) {
-            return $user->id === $word->user_id;
-        });
     }
 }
