@@ -127,7 +127,27 @@ class DefineController extends Controller
             $defs = WordDefinition::where('user_id', $owner_id_);
         }
 
-        $defs = $defs->orderBy('word', 'ASC')->paginate(PAGE_LEN);
+        $defs = $defs->withCount([
+            'votes as dislikes_count' => function ($query) {
+                $query->where('is_like', 0);
+            },
+
+            'votes as likes_count' => function ($query) {
+                $query->where('is_like', 1);
+            },
+         ]);
+
+        if(Auth::user() != null) $defs =  $defs->withCount(['votes as user_likes_count' => function ($query) {
+                $query->where('is_like', 1)->where('user_id', Auth::user()->id);
+            },
+            'votes as user_dislikes_count' => function ($query) {
+                $query->where('is_like', 0)->where('user_id', Auth::user()->id);
+            },]);
+
+
+        $defs = $defs->orderBy('word', 'ASC')
+            ->orderBy('likes_count', 'DESC')
+            ->orderBy('dislikes_count', 'ASC')->paginate(PAGE_LEN);
         
         $viewData["title"] = $viewData["subtitle"]." - Turban";
         $viewData["search-term"] = $search_term_;
