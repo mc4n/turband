@@ -92,14 +92,30 @@ class DefineController extends Controller
 
     public function vote(Request $request, $word_definition_id, $is_like)
     {
-        $vote = new Vote;
-        $vote->is_like = $is_like;
-        $vote->word_definition_id = $word_definition_id;
-        $vote->user_id =  Auth::user()->id;
+        $me_vote = WordDefinition::find($word_definition_id)->votes->firstwhere('user_id', Auth::user()->id);
 
-        Vote::validate($request);
+        if($me_vote != null){
+            if($me_vote->is_like == $is_like)
+            {
+                $me_vote->delete();
+            }
+            else
+            {
+                $me_vote->is_like = $is_like;
+                $me_vote->save();
+            }
+        }
+        else
+        {
+            $vote = new Vote;
+            $vote->is_like = $is_like;
+            $vote->word_definition_id = $word_definition_id;
+            $vote->user_id =  Auth::user()->id;
 
-        $vote->save();
+            Vote::validate($request);
+
+            $vote->save();
+        }
         return back();
     }
   

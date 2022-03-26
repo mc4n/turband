@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function () {
 	Route::delete('/delete/{id}', 'App\Http\Controllers\DefineController@delete')->name("define.delete");
 
 	
-	Route::post('/vote/{word_definition_id}/{is_like}', 'App\Http\Controllers\DefineController@vote')->name("define.vote")->where(['word_definition_id' => '[0-9]+', 'is_like' => '[0-1]']);
+	Route::put('/vote/{word_definition_id}/{is_like}', 'App\Http\Controllers\DefineController@vote')->name("define.vote")->where(['word_definition_id' => '[0-9]+', 'is_like' => '[0-1]']);
 
 });
 

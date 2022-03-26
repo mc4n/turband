@@ -32,6 +32,7 @@
 					<div style="float:left;" >
 						<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>1])}}" method="POST">
 						@csrf
+						@method('PUT')
 						<button style='background-color:{{$def->user_likes_count>0?"green":""}}' type="submit" >+</button>
 						<label>({{$def->likes_count}})</label>
 						</form>
@@ -41,6 +42,7 @@
 					<div style="float:left;">
 						<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>0])}}" method="POST">
 						@csrf
+						@method('PUT')
 						<button style='background-color:{{$def->user_dislikes_count>0?"red":""}}' type="submit" >-</button>
 						<label>({{$def->dislikes_count}})</label>
 						</form>
