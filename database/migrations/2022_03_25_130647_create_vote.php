@@ -18,10 +18,10 @@ return new class extends Migration
 
             $table->boolean('is_like')->default(1)->index("vote-like_or_dislike");
 
-            $table->integer('word_definition_id')->unsigned()->index("vote-word_definition");
+            $table->unsignedBigInteger('word_definition_id')->unsigned()->index("vote-word_definition");
             $table->foreign('word_definition_id')->references('id')->on('word_definitions');
 
-            $table->integer('user_id')->unsigned()->index("vote-user");
+            $table->unsignedBigInteger('user_id')->unsigned()->index("vote-user");
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

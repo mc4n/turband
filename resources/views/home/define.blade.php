@@ -24,7 +24,7 @@
 				<p><i>"{{ $def["example"] }}"</i></p>
 				
 				<hr>
-				<a href={{route('define.search', ["owner"=>$def->user->id])}}><b>{{$def->user?->name?:"<null>"}}</b></a>
+				<a href={{route('define.search', ["owner"=>$def->user->id])}}><b>{{$def->user?->nickname?:"<null>"}}</b></a>
 				| <i>{{ Carbon\Carbon::parse($def->created_at)->format('d M Y') }}</i>
 
 				<br><br>
@@ -98,9 +98,13 @@
 </div>
 
 	@if($viewData["definitions"]->count()==0)
-		'{{$viewData["search-term"]}}' kelimesi icin hic bir sonuc bulunamadi! Bir tane olusturmaya ne dersin?
-		<br>
-		<a href="{{route('define.add', ["word"=>$viewData["search-term"]] ) }}"] )}}" class="btn bg-primary text-white">Olustur</a>
+		@if($viewData["owner_id"] != null)
+			Kullaniciya ait hic bir tanim bulunamadi.
+		@else
+			'{{$viewData["search-term"]}}' kelimesi icin hic bir sonuc bulunamadi! Bir tane olusturmaya ne dersin?
+			<br>
+			<a href="{{route('define.add', ["word"=>$viewData["search-term"]] ) }}"] )}}" class="btn bg-primary text-white">Olustur</a>
+		@endif
 	@endif
 
 

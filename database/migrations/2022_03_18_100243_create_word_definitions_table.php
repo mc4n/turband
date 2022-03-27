@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('word_definitions', function (Blueprint $table) {
             $table->id();
-            $table->string('word', 48)->index('word-text');
-            $table->string('definition', 512);
-            $table->text('example', 1024)->nullable();
-            $table->integer('user_id')->unsigned()->index("word-user");
+            $table->string('word')->index('word-text');
+            $table->string('definition', 1024);
+            $table->string('example', 512)->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned()->index("word-user");
             $table->foreign('user_id')->references('id')->on('users');      
             $table->timestamps();
         });

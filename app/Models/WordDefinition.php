@@ -15,9 +15,9 @@ class WordDefinition extends Model
     public static function validate($request)
     {
         $request->validate([
-        "word" => "required |max:48 |min:2",
-        "definition" => "required |max:512 |min:2",
-        "example" => "max:1024",
+        "word" => "required |max:255 |min:2",
+        "definition" => "required |max:1024 |min:2",
+        "example" => "max:512",
         "user_id" => "exists:users,id",
         ]);
     }

@@ -50,7 +50,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
   <a class="nav-link active" href="{{ route('register') }}">Kayit</a>
   @else
 
-  <a class="nav-link active" href={{route('define.search', ["owner"=>Auth::user()->id])}} class="nav-link">{{Auth::user()->name }}</a>
+  <a class="nav-link active" href={{route('define.search', ["owner"=>Auth::user()->id])}} class="nav-link">{{Auth::user()->nickname }}</a>
 
   <form id="logout" action="{{ route('logout') }}" method="POST">
     <a role="button" class="nav-link"
