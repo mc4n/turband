@@ -99,7 +99,7 @@
 
 	@if($viewData["definitions"]->count()==0)
 		@if($viewData["owner_id"] != null)
-			Kullaniciya ait hic bir tanim bulunamadi.
+			Burada bir tanim yok!
 		@else
 			'{{$viewData["search-term"]}}' kelimesi icin hic bir sonuc bulunamadi! Bir tane olusturmaya ne dersin?
 			<br>

@@ -22,7 +22,7 @@
 
 <form class="form-inline my-2 my-lg-0" action="{{ route('define.search') }}" method="get">
 <div class="input-group">
-  <input name="term" class="form-control input-lg" type="term" placeholder="Aramak için bir kelime girin" aria-label="Search">
+  <input id="term" name="term" class="form-control input-lg" type="term" placeholder="Aramak için bir kelime girin" aria-label="Search">
   <button class="btn btn-success" type="submit">Ara</button>
  </div>
 </form>
@@ -50,7 +50,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
   <a class="nav-link active" href="{{ route('register') }}">Kayit</a>
   @else
 
-  <a class="nav-link active" href={{route('define.search', ["owner"=>Auth::user()->id])}} class="nav-link">{{Auth::user()->nickname }}</a>
+  <a class="nav-link active" href={{route('home.account')}} class="nav-link">{{Auth::user()->nickname }}</a>
 
   <form id="logout" action="{{ route('logout') }}" method="POST">
     <a role="button" class="nav-link"

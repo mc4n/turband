@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
 	
 	Route::put('/vote/{word_definition_id}/{is_like}', 'App\Http\Controllers\DefineController@vote')->name("define.vote")->where(['word_definition_id' => '[0-9]+', 'is_like' => '[0-1]']);
 
+	Route::get('/account', 'App\Http\Controllers\HomeController@account')->name("home.account");
+	Route::get('/votes', 'App\Http\Controllers\HomeController@votes')->name("home.votes");
+
 });
 
 Route::middleware('admin')->group(function () {
