@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Sifre sifirla - Turban')
-@section('subtitle', 'Sifre sifirla')
+@section('subtitle', 'Sifre sifirlama istegi')
 
 @section('content')
 <div class="container">
@@ -24,7 +24,11 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Adresi') }}</label>
 
                             <div class="col-md-6">
+                                @auth
+                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value='{{Auth::user()->email}}' autocomplete="email" autofocus>
+                                @else
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                @endauth
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

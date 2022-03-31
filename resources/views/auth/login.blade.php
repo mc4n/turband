@@ -60,12 +60,11 @@
                                     {{ __('Giris') }}
                                 </button>
 
-                                <!--@if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                     <a class="btn bg-primary text-white" href="{{ route('password.request') }}">
                                         {{ __('Sifremi unuttum?') }}
                                     </a>
                                 @endif
-                                -->
                             </div>
                         </div>
                     </form>
