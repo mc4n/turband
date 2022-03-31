@@ -23,7 +23,15 @@
 <form class="form-inline my-2 my-lg-0" action="{{ route('define.search') }}" method="get">
 <div class="input-group">
   <input id="term" name="term" class="form-control input-lg" type="term" placeholder="Aramak için bir kelime girin" aria-label="Search">
+
+
+  <div>
+    <input type="checkbox" id="exact" name="exact" value="1">
+    <label style='color: white;' for="exact"> tam eslestir</label>
+  </div>
+
   <button class="btn btn-success" type="submit">Ara</button>
+
  </div>
 </form>
 
@@ -66,7 +74,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 </nav>
 <header class="masthead bg-primary text-white text-center py-4">
 <div class="container d-flex align-items-center flex-column">
-<h2>@yield('subtitle', 'Turkce Halk Sozlugu')</h2>
+<h3>@yield('subtitle', 'Turkce Halk Sozlugu')</h3>
 </div>
 </header>
 <!-- header -->

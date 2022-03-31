@@ -15,7 +15,7 @@
 
 			<div class="card-body text-center">	
 
-				<a href={{route('define.search', ["term"=>$def["word"], "exact"=>"1"]) }} class="btn bg-primary text-black"><b>{{ $def["word"] }}</b></a>
+				<a href={{route('define.search', ["term"=>$def["word"], "exact"=>"1"]) }} class="text"><b>{{ $def["word"] }}</b></a>
 				
 				<br>
 
