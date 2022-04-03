@@ -6,99 +6,33 @@
 
 <div class="container">
 
-<div class="row">
+	<div class="row">
 
-	@foreach ($viewData["definitions"] as $def)
-	<div class="col-md-4 col-lg-3 mb-2">
-			
-		<div class="card">
-
-			<div class="card-body text-center">	
-
-				<a href={{route('define.search', ["term"=>$def["word"], "exact"=>"1"]) }} class="text"><b>{{ $def["word"] }}</b></a>
-				
-				<br>
-
-				<p class="text-black">{{ $def["definition"] }}</p>
-
-				<p><i>"{{ $def["example"] }}"</i></p>
-				
-				<hr>
-				<a href={{route('define.search', ["owner"=>$def->user->id])}}><b>{{$def->user?->nickname?:"<null>"}}</b></a>
-				| <i>{{ Carbon\Carbon::parse($def->created_at)->format('d M Y') }}</i>
-
-				<br><br>
-				<div>
-					<div style="float:left;" >
-						<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>1])}}" method="POST">
-						@csrf
-						@method('PUT')
-						<button style='background-color:{{$def->user_likes_count>0?"green":""}}' type="submit" >+</button>
-						<label>({{$def->likes_count}})</label>
-						</form>
-
-					</div>
-
-					<div style="float:left;">
-						<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>0])}}" method="POST">
-						@csrf
-						@method('PUT')
-						<button style='background-color:{{$def->user_dislikes_count>0?"red":""}}' type="submit" >-</button>
-						<label>({{$def->dislikes_count}})</label>
-						</form>
-					</div>
-
-					<div style="float:right;">
-						@if($def->likes_count - $def->dislikes_count>0)
-						<label style='color:white; background-color:green;'>{{'+'.$def->likes_count-$def->dislikes_count}}</label>
-						@elseif($def->likes_count-$def->dislikes_count==0)
-							<label style='color:white; background-color:lightgrey;'>{{'-'.$def->likes_count-$def->dislikes_count}}</label>
-						@else
-							<label style='color:white; background-color:red;'>{{$def->likes_count-$def->dislikes_count}}</label>
-
-						@endif
-
-					</div>
-					
-				</div>
-
-				
-
-			</div>
-
-			@if($def->user == Auth::user())
-				   	<div class="card-body text-center">	
-						<a href="{{ route('define.edit', $def->id) }}" >Guncelle</a>
-						
-						<form action="{{ route('define.delete', $def->id)}}" method="POST">
-							@csrf
-							@method('DELETE')
-							<button type="submit" >Sil</button>
-						</form>
-
-				   	</div>
-				@endif
-
+		{{-- List Items --}}
+		@foreach ($viewData["definitions"] as $def)
+		<div class="col-md-4 col-lg-3 mb-2">
+			@include('home.definition_card', $def)
 		</div>
+		@endforeach
+
+		{{-- Pagination --}}
+		<div class="d-flex justify-content-center">
+		    {!! $viewData["definitions"]->appends(
+
+		    	$viewData["owner"] == null
+		    	?["term" => $viewData["search-term"], "exact" => $viewData["is_exact"] !=1 ? null : 1]
+		    	:["owner" => $viewData["owner"]->nickname]
+
+
+		    )->links() !!}
+		</div>
+
+
 	</div>
-	@endforeach
-
-{{-- Pagination --}}
-<div class="d-flex justify-content-center">
-    {!! $viewData["definitions"]->appends(
-
-    	$viewData["owner_id"]==null
-    	?["term" => $viewData["search-term"], "exact" => $viewData["is_exact"]!=1?null:1]
-    	:["owner" => $viewData["owner_id"]]
 
 
-    )->links() !!}
-</div>
-
-</div>
-
-	@if($viewData["definitions"]->count()==0)
-		@if($viewData["owner_id"] != null)
+	@if($viewData["definitions"]->count() == 0)
+		@if($viewData["owner"] != null)
 			Burada bir tanim yok!
 		@else
 			'{{$viewData["search-term"]}}' kelimesi icin hic bir sonuc bulunamadi! Bir tane olusturmaya ne dersin?

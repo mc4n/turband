@@ -26,8 +26,8 @@ class HomeController extends Controller
 
     public function account(){
         $viewData = [];
-        $viewData["title"] = "Hesap - Turban";
-        $viewData["subtitle"] = "Hesap";
+        $viewData["title"] = "Hesabiniz - Turban";
+        $viewData["subtitle"] = "Hesabiniz";
         return view('home.account')->with("viewData", $viewData);
     }
 
@@ -64,7 +64,7 @@ class HomeController extends Controller
 
         $viewData["search-term"] = null;
         $viewData["is_exact"] = 0;
-        $viewData["owner_id"] =Auth::user()->id;
+        $viewData["owner"] =Auth::user();
 
         return view('home.define')->with("viewData", $viewData);
     }
