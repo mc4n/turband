@@ -12,25 +12,38 @@
 @endif
 
 @auth
-<form class="form-inline my-2 my-lg-0" action="{{ route('define.add_post') }}" method="post">
 
-  @csrf
+  @if(Auth::user()->email_verified_at!=null)
+    <form class="form-inline my-2 my-lg-0" action="{{ route('define.add_post') }}" method="post">
 
-  <div class="row">
+      @csrf
 
-  Kelime: 
-  <input type="text" name="word" class="form-control input-lg" value ='{{$viewData["word"]?:old('word')}}'>
+      <div class="row">
 
-  Tanim: 
-  <textarea name="definition" class="form-control input-lg">{{old('definition')}}</textarea>
+      Kelime: 
+      <input type="text" name="word" class="form-control input-lg" value ='{{$viewData["word"]?:old('word')}}'>
 
-  Ornek Kullanim: 
-  <textarea type="text" name="example" class="form-control input-lg">{{old('example')}}</textarea>
+      Tanim: 
+      <textarea name="definition" class="form-control input-lg">{{old('definition')}}</textarea>
 
-  <button class="btn btn-success" type="submit">Tamamla</button>
- </div>
+      Ornek Kullanim: 
+      <textarea type="text" name="example" class="form-control input-lg">{{old('example')}}</textarea>
 
-</form>
+      <button class="btn btn-success" type="submit">Tamamla</button>
+     </div>
+
+    </form>
+
+    @else
+      @php
+        header("Location: " . URL::to('/email/verify'), true, 302);
+        exit();
+      @endphp
+
+  @endif
+
+
+
 @else 
 
  <div class="row">

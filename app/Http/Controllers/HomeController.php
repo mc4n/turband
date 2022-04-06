@@ -19,19 +19,21 @@ class HomeController extends Controller
         $viewData = [];
         $viewData["title"] = "Hakkında - Turban";
         $viewData["subtitle"] = "Hakkında";
-        $viewData["description"] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor metus vitae ex lobortis lacinia. Cras sed ante eget nulla condimentum tristique eget rhoncus ligula. Nulla at dui vitae nibh eleifend fringilla quis sodales libero. Morbi ut ornare risus. Proin in porta felis. Integer nibh diam, cursus eu dignissim vel, luctus vel nibh.";
-        $viewData["author"] = "MCA tarafından gelistildi.";
+        $viewData["description"] = "Bu site bir interaktif Turkce halk dili sozlugu projesidir.";
+        $viewData["author"] = "MCA tarafından gelistilmistir.";
         return view('home.about')->with("viewData", $viewData);
     }
 
-    public function account(){
+    public function account()
+    {
         $viewData = [];
         $viewData["title"] = "Hesabiniz - Turban";
         $viewData["subtitle"] = "Hesabiniz";
         return view('home.account')->with("viewData", $viewData);
     }
 
-    public function votes(){
+    public function votes()
+    {
         $viewData = [];
         $viewData["title"] = "Oyladiklarin - Turban";
         $viewData["subtitle"] = "Oyladiklarin";
@@ -46,12 +48,14 @@ class HomeController extends Controller
                     },
                  ]);
 
-                if(Auth::user() != null) $defs =  $defs->withCount(['votes as user_likes_count' => function ($query) {
-                        $query->where('is_like', 1)->where('user_id', Auth::user()->id);
-                    },
-                    'votes as user_dislikes_count' => function ($query) {
-                        $query->where('is_like', 0)->where('user_id', Auth::user()->id);
-                    },]);
+        if (Auth::user() != null) {
+            $defs =  $defs->withCount(['votes as user_likes_count' => function ($query) {
+                $query->where('is_like', 1)->where('user_id', Auth::user()->id);
+            },
+            'votes as user_dislikes_count' => function ($query) {
+                            $query->where('is_like', 0)->where('user_id', Auth::user()->id);
+            },]);
+        }
 
 
         $defs = $defs->orderBy('word', 'ASC')

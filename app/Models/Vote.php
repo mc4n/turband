@@ -18,7 +18,7 @@ class Vote extends Model
         ]);
     }
 
-    public function word_definition()
+    public function wordDefinition()
     {
         return $this->belongsTo(WordDefinition::class);
     }

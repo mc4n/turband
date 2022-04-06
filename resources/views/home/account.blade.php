@@ -36,7 +36,7 @@
 
 	<div>
 		<a href='{{route('define.search', ['owner'=> Auth::user()->nickname])}}'>
-			Tanimlarin ({{Auth::user()->word_definitions->count()}})
+			Tanimlarin ({{Auth::user()->wordDefinitions->count()}})
 		</a>
 
 		<br>

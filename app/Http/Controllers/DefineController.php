@@ -25,7 +25,7 @@ class DefineController extends Controller
         return view('home.add')->with("viewData", $viewData);
     }
 
-    public function add_post(Request $request)
+    public function addPost(Request $request)
     {
         $word = new WordDefinition;
 
@@ -37,7 +37,8 @@ class DefineController extends Controller
         WordDefinition::validate($request);
 
         if ($word->save() > 0) {
-            return redirect()->action('App\Http\Controllers\DefineController@search', ['term'=>$word->word, 'exact' => 1]);
+            return redirect()
+            ->action('App\Http\Controllers\DefineController@search', ['term'=>$word->word, 'exact' => 1]);
         } else {
             return back()->withInput();
         }
@@ -73,7 +74,8 @@ class DefineController extends Controller
         WordDefinition::validate($request);
 
         if ($word->save() > 0) {
-            return redirect()->action('App\Http\Controllers\DefineController@search', ['term'=>$word->word, 'exact' => 1]);
+            return redirect()
+            ->action('App\Http\Controllers\DefineController@search', ['term'=>$word->word, 'exact' => 1]);
         } else {
             return back()->withInput();
         }
@@ -94,19 +96,14 @@ class DefineController extends Controller
     {
         $me_vote = WordDefinition::find($word_definition_id)->votes->firstwhere('user_id', Auth::user()->id);
 
-        if($me_vote != null){
-            if($me_vote->is_like == $is_like)
-            {
+        if ($me_vote != null) {
+            if ($me_vote->is_like == $is_like) {
                 $me_vote->delete();
-            }
-            else
-            {
+            } else {
                 $me_vote->is_like = $is_like;
                 $me_vote->save();
             }
-        }
-        else
-        {
+        } else {
             $vote = new Vote;
             $vote->is_like = $is_like;
             $vote->word_definition_id = $word_definition_id;
@@ -120,7 +117,7 @@ class DefineController extends Controller
     }
   
     public function search(Request $request)
-    {    
+    {
         $search_term_ = $request->input("term");
         $exact_ = $request->input('exact', 0);
         $owner_ = \App\Models\User::where('nickname', $request->input("owner"))->first();
@@ -132,14 +129,14 @@ class DefineController extends Controller
         $viewData = [];
         
         
-       if($owner_ == null){
-            $viewData["subtitle"] = $exact_ != 0? "'".$search_term_."' icin tanimlar":"'".$search_term_."' için arama sonuclari";
+        if ($owner_ == null) {
+            $viewData["subtitle"] = $exact_ != 0? "'"
+            .$search_term_."' icin tanimlar":"'".$search_term_."' için arama sonuclari";
             $defs = $exact_ != null && $exact_ != 0
                 ? WordDefinition::where('word', $search_term_)
                 : WordDefinition::where('word', 'like', $search_term_.'%');
-        }
-       else{
-            $viewData["subtitle"] = "'".$request->input("owner")."' kullanicisina ait tanimlar"; 
+        } else {
+            $viewData["subtitle"] = "'".$request->input("owner")."' kullanicisina ait tanimlar";
             $defs = WordDefinition::where('user_id', $owner_->id);
         }
 
@@ -153,12 +150,14 @@ class DefineController extends Controller
             },
          ]);
 
-        if(Auth::user() != null) $defs =  $defs->withCount(['votes as user_likes_count' => function ($query) {
+        if (Auth::user() != null) {
+            $defs =  $defs->withCount(['votes as user_likes_count' => function ($query) {
                 $query->where('is_like', 1)->where('user_id', Auth::user()->id);
             },
             'votes as user_dislikes_count' => function ($query) {
                 $query->where('is_like', 0)->where('user_id', Auth::user()->id);
             },]);
+        }
 
 
         $defs = $defs->orderBy('word', 'ASC')
