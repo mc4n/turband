@@ -53,4 +53,4 @@ Route::middleware('admin')->group(function () {
 });
 
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
