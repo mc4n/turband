@@ -19,8 +19,6 @@ class HomeController extends Controller
         $viewData = [];
         $viewData["title"] = "Hakkında - Turband";
         $viewData["subtitle"] = "Hakkında";
-        $viewData["description"] = "Bu site bir interaktif Turkce halk dili sozlugu projesidir.";
-        $viewData["author"] = "MCA tarafından gelistilmistir.";
         return view('home.about')->with("viewData", $viewData);
     }
 
