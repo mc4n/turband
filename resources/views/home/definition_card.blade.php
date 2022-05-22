@@ -1,29 +1,27 @@
-<div class="card">
+<div class="card"  style="border: 2px solid #5F9EA0">
 
-	<div class="card-body text-center">	
+	<div class="card-body">	
 
 		@if($def->likes_count - $def->dislikes_count >= 0)
-			<a href={{route('define.search', ["term"=>$def->word, "exact"=>"1"]) }}><b>{{ $def->word }}</b></a>
+			<h4><a href={{route('define.search', ["term"=>$def->word, "exact"=>"1"]) }}><b>{{ $def->word }}</b></a></h4>
 			<p>{{ $def->definition }}</p>
 			<p><i>"{{ $def->example }}"</i></p>
 			
 			@else
-			<a style='color:grey;' href={{route('define.search', ["term"=>$def->word, "exact"=>"1"]) }}>{{ $def->word }}</a>
+			<h4><a style='color:grey;' href={{route('define.search', ["term"=>$def->word, "exact"=>"1"]) }}>{{ $def->word }}</a></h4>
 			<p style='color:grey;'>{{ $def->definition }}</p>
 			<p style='color:grey;'><i>"{{ $def->example }}"</i></p>
 		@endif
 
-		
-		
-		<hr>
+		<div class="card-block text-center">
 		<a href={{route('define.search', ["owner"=>$def->user->nickname])}}><b>{{$def->user?->nickname?:"<null>"}}</b></a>
 		
 		<i>{{ Carbon\Carbon::parse($def->created_at)->format('d M Y') }}</i>
 
-		<br><br>
-
+<hr>
 		<div>
-			<div style="float:left;" >
+
+			<div style="float:left;">
 				<form action="{{ route('define.vote', ['word_definition_id'=>$def->id, 'is_like'=>1])}}" method="POST">
 				@csrf
 				@method('PUT')
@@ -53,15 +51,27 @@
 				@endif
 
 			</div>
+
+
 			
 		</div>
+
+		
+		
+		
+		
+
+
+		
+
+	</div>
 
 		
 
 	</div>
 
 	@if($def->user == Auth::user())
-	   	<div class="card-body text-center">	
+	   	<div class="card-footer text-center">	
 			<a href="{{ route('define.edit', $def->id) }}" >Guncelle</a>
 			
 			<form action="{{ route('define.delete', $def->id)}}" method="POST">

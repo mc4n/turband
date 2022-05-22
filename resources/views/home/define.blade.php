@@ -10,7 +10,7 @@
 
 		{{-- List Items --}}
 		@foreach ($viewData["definitions"] as $def)
-		<div class="col-md-4 col-lg-3 mb-2">
+		<div class="col-lg-3 mb-5">
 			@include('home.definition_card', $def)
 		</div>
 		@endforeach
