@@ -35,9 +35,9 @@
 		@if($viewData["owner"] != null)
 			Burada bir tanim yok!
 		@else
-			'{{$viewData["search-term"]}}' kelimesi icin hic bir sonuc bulunamadi! Bir tane olusturmaya ne dersin?
+			'{{$viewData["search-term"]}}' için hiç tanım yok! Bir tane oluşturmaya ne dersin?
 			<br>
-			<a href="{{route('define.add', ["word"=>$viewData["search-term"]] ) }}"] )}}" class="btn bg-primary text-white">Olustur</a>
+			<a href="{{route('define.add', ["word"=>$viewData["search-term"]] ) }}"] )}}" class="btn bg-primary text-white">Oluştur</a>
 		@endif
 	@endif
 

@@ -8,7 +8,7 @@
 <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
 
 
-<title>@yield('title', 'Turban')</title>
+<title>@yield('title', 'Turband')</title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
 <div class="container">
 
-<a class="navbar-brand" href="{{ route('home.index') }}">Turban</a>
+<a class="navbar-brand" href="{{ route('home.index') }}">Turband</a>
 
 
 <form class="form-inline my-2 my-lg-0" action="{{ route('define.search') }}" method="get">
@@ -27,7 +27,7 @@
 
   <div>
     <input type="checkbox" id="exact" name="exact" value="1">
-    <label style='color: white;' for="exact"> tam eslestir</label>
+    <label style='color: white;' for="exact"> tam eşleştir</label>
   </div>
 
   <button class="btn btn-success" type="submit">Ara</button>
@@ -49,19 +49,19 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 <div class="navbar-nav ms-auto">
 <a class="nav-link active" href="{{ route('home.about') }}">Hakkında</a>
 
-<a class="nav-link active" href="{{ route('define.add') }}">+ Tanim Ekle</a>
+<a class="nav-link active" href="{{ route('define.add') }}">+ Tanım Ekle</a>
 
 <div class="vr bg-white mx-2 d-none d-lg-block"></div>
 @guest
-  <a class="nav-link active" href="{{ route('login') }}">Giris</a>
-  <a class="nav-link active" href="{{ route('register') }}">Kayit</a>
+  <a class="nav-link active" href="{{ route('login') }}">Giriş</a>
+  <a class="nav-link active" href="{{ route('register') }}">Kayıt</a>
   @else
 
   <a class="nav-link active" href={{route('home.account')}} class="nav-link">{{Auth::user()->nickname }}</a>
 
   <form id="logout" action="{{ route('logout') }}" method="POST">
     <a role="button" class="nav-link"
-    onclick="document.getElementById('logout').submit();">Cikis yap</a>
+    onclick="document.getElementById('logout').submit();">Cıkış yap</a>
     @csrf
   </form>
 @endguest
@@ -73,7 +73,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 </nav>
 <header class="masthead bg-primary text-white text-center py-4">
 <div class="container d-flex align-items-center flex-column">
-<h3>@yield('subtitle', 'Turkce Halk Sozlugu')</h3>
+<h3>@yield('subtitle', 'Türkçe Halk Sözlüğü')</h3>
 </div>
 </header>
 <!-- header -->
@@ -85,7 +85,7 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 <div class="copyright py-4 text-center text-white">
 <div class="container">
 <small>
-Copyright © 2022 - Turban</small>
+Copyright © 2022 - Turband</small>
 </div>
 </div>
 <!-- footer -->

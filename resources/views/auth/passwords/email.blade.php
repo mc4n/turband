@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Sifre sifirla - Turban')
-@section('subtitle', 'Sifre sifirlama istegi')
+@section('title', 'Şifre sıfırla - Turband')
+@section('subtitle', 'Şifre sıfırlama isteği')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Sifre sifirla') }}</div>
+                <div class="card-header">{{ __('Şifre sıfırla') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -41,7 +41,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn bg-primary text-white">
-                                    {{ __('Sifre sifirlama linkini gonder') }}
+                                    {{ __('Şifre sıfırlama linkini gönder') }}
                                 </button>
                             </div>
                         </div>

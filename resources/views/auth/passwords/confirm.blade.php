@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Sifre Tasdik - Turban')
-@section('subtitle', 'Sifre tasdikleme')
+@section('title', 'Şifre Tasdik - Turband')
+@section('subtitle', 'Şifre tasdikleme')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Sifreyi dogrula') }}</div>
+                <div class="card-header">{{ __('Şifreyi doğrula') }}</div>
 
                 <div class="card-body">
-                    {{ __('Devam etmeden once luffen sifrenizi dogrulayin.') }}
+                    {{ __('Devam etmeden önce lütfen şifrenizi doğrulayın.') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
@@ -33,12 +33,12 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn bg-primary text-white">
-                                    {{ __('Dogrula') }}
+                                    {{ __('Doğrula') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Neydi beni sifrem?') }}
+                                        {{ __('Neydi benim şifrem?') }}
                                     </a>
                                 @endif
                             </div>

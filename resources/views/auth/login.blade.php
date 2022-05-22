@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Giris yap - Turban')
-@section('subtitle', 'Giris yap')
+@section('title', 'Giriş yap - Turband')
+@section('subtitle', 'Giriş yap')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Giris') }}</div>
+                <div class="card-header">{{ __('Giriş') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Sifre') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Şifre') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -48,7 +48,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Beni hatirla') }}
+                                        {{ __('Beni hatırla') }}
                                     </label>
                                 </div>
                             </div>
@@ -57,12 +57,12 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn bg-primary text-white">
-                                    {{ __('Giris') }}
+                                    {{ __('Giriş') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn bg-primary text-white" href="{{ route('password.request') }}">
-                                        {{ __('Sifremi unuttum?') }}
+                                        {{ __('Şifremi unuttum?') }}
                                     </a>
                                 @endif
                             </div>

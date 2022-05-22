@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kaydol - Turban')
+@section('title', 'Kaydol - Turband')
 @section('subtitle', 'Kaydol')
 
 @section('content')
@@ -8,14 +8,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Kayit') }}</div>
+                <div class="card-header">{{ __('Kayıt') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="nickname" class="col-md-4 col-form-label text-md-end">{{ __('nick') }}</label>
+                            <label for="nickname" class="col-md-4 col-form-label text-md-end">{{ __('nickname') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nickname" type="text" class="form-control @error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus>
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Sifre') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Şifre') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Sifreyi tasdikle') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Şifre tasdik') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -67,7 +67,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn bg-primary text-white">
-                                    {{ __('Uye ol') }}
+                                    {{ __('Üye ol') }}
                                 </button>
                             </div>
                         </div>

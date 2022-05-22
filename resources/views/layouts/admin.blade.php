@@ -7,7 +7,7 @@
 crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link href="{{ asset('/css/admin.css') }}" rel="stylesheet" />
-<title>@yield('title', 'Admin - Turban')</title>
+<title>@yield('title', 'Admin - Turband')</title>
 </head>
 <body>
 <div class="row g-0">
@@ -39,7 +39,7 @@ crossorigin="anonymous" />
 <!-- footer -->
 <div class="copyright py-4 text-center text-white">
 <div class="container">
-<small>Copyright - <a class="text-reset fw-bold text-decoration-none" href="">Turban</a></small>
+<small>Copyright - <a class="text-reset fw-bold text-decoration-none" href="">Turband</a></small>
 </div>
 </div>
 <!-- footer -->

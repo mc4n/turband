@@ -9,15 +9,15 @@
 
 	<i style="color:grey;">
 			'{{ \Carbon\Carbon::parse(Auth::user()->created_at)->format('j F, Y') }}'
-			tarihinde katildi.
+			tarihinde katılındı.
 	</i>
 
 	@if (Auth::user()->email_verified_at==null)
-	<i style="color:red">(email dogrulanmadi)</i>
+	<i style="color:red">(email doğrulanmadı)</i>
 	<a class="btn bg-secondary text-white" href='/email/verify'>Dogrula</a>
 
 	@else
-		<i style="color:green">(email dogrulandi)</i>
+		<i style="color:green">(email doğrulandı)</i>
 	@endif
 
 	<div>
@@ -36,20 +36,20 @@
 
 	<div>
 		<a href='{{route('define.search', ['owner'=> Auth::user()->nickname])}}'>
-			Tanimlarin ({{Auth::user()->wordDefinitions->count()}})
+			Tanımların ({{Auth::user()->wordDefinitions->count()}})
 		</a>
 
 		<br>
 
 		<a href='{{route('home.votes')}}'>
-			Oyladiklarin ({{Auth::user()->votes->count()}})
+			Oyladıkların ({{Auth::user()->votes->count()}})
 		</a>
 
 	</div>
 
 	<hr>
 
-	<a class="btn bg-primary text-white" href='/password/reset'>Sifre sifirla</a>
+	<a class="btn bg-primary text-white" href='/password/reset'>Şifre sıfırla</a>
 	
 
 

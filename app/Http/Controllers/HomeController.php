@@ -11,13 +11,13 @@ class HomeController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Anasayfa - Turban";
+        $viewData["title"] = "Anasayfa - Turband";
         return view('home.index')->with("viewData", $viewData);
     }
     public function about()
     {
         $viewData = [];
-        $viewData["title"] = "Hakkında - Turban";
+        $viewData["title"] = "Hakkında - Turband";
         $viewData["subtitle"] = "Hakkında";
         $viewData["description"] = "Bu site bir interaktif Turkce halk dili sozlugu projesidir.";
         $viewData["author"] = "MCA tarafından gelistilmistir.";
@@ -27,16 +27,16 @@ class HomeController extends Controller
     public function account()
     {
         $viewData = [];
-        $viewData["title"] = "Hesabiniz - Turban";
-        $viewData["subtitle"] = "Hesabiniz";
+        $viewData["title"] = "Hesabınız - Turband";
+        $viewData["subtitle"] = "Hesabınız";
         return view('home.account')->with("viewData", $viewData);
     }
 
     public function votes()
     {
         $viewData = [];
-        $viewData["title"] = "Oyladiklarin - Turban";
-        $viewData["subtitle"] = "Oyladiklarin";
+        $viewData["title"] = "Oyladıkların - Turband";
+        $viewData["subtitle"] = "Oyladıkların";
 
         $defs = WordDefinition::whereRelation('votes', 'user_id', Auth::user()->id)->withCount([
                     'votes as dislikes_count' => function ($query) {

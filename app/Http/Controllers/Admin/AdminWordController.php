@@ -12,7 +12,7 @@ class AdminWordController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Admin Page - Words - Turban";
+        $viewData["title"] = "Admin Page - Words - Turband";
         $viewData["words"] = WordDefinition::all();
         return view('admin.word.index')->with("viewData", $viewData);
     }
@@ -43,7 +43,7 @@ class AdminWordController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Admin Page - Edit Definition - Turban";
+        $viewData["title"] = "Admin Page - Edit Definition - Turband";
         $viewData["word"] = WordDefinition::findOrFail($id);
         return view('admin.word.edit')->with("viewData", $viewData);
     }

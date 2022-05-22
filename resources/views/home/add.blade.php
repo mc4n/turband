@@ -23,10 +23,10 @@
       Kelime: 
       <input type="text" name="word" class="form-control input-lg" value ='{{$viewData["word"]?:old('word')}}'>
 
-      Tanim: 
+      Tanım: 
       <textarea name="definition" class="form-control input-lg">{{old('definition')}}</textarea>
 
-      Ornek Kullanim: 
+      Örnek Kullanım: 
       <textarea type="text" name="example" class="form-control input-lg">{{old('example')}}</textarea>
 
       <button class="btn btn-success" type="submit">Tamamla</button>
@@ -51,13 +51,13 @@
   Kelime: 
   <input disabled="true" type="text" name="word"value ="{{$viewData["word"]}}">
 
-  Tanim: 
+  Tanım: 
   <textarea disabled="true"  name="definition"></textarea>
 
-  Ornek Kullanim: 
+  Örnek Kullanım: 
   <textarea disabled="true" type="text" name="example"></textarea>
 
-  <i> Tanim ekleyebilmek icin lutfen <a href='{{route('login')}}'>giris</a> yapin.</i>
+  <i> Tanım ekleyebilmek için lütfen <a href='{{route('login')}}'>giriş</a> yapınız.</i>
   
  </div>
 

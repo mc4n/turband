@@ -17,8 +17,8 @@ class DefineController extends Controller
         $word = $request->input('word');
 
         $viewData = [];
-        $viewData["subtitle"] = "Tanim Ekle";
-        $viewData["title"] = $viewData["subtitle"]." - Turban";
+        $viewData["subtitle"] = "Tanım Ekle";
+        $viewData["title"] = $viewData["subtitle"]." - Turband";
         $viewData ["word"]=  $word;
 
 
@@ -51,8 +51,8 @@ class DefineController extends Controller
         Gate::authorize('update', $word);
 
         $viewData = [];
-        $viewData["subtitle"] = "Tanim Guncelle";
-        $viewData["title"] = $viewData["subtitle"]." - Turban";
+        $viewData["subtitle"] = "Tanım Güncelle";
+        $viewData["title"] = $viewData["subtitle"]." - Turband";
 
         $viewData ["word"]=  $word;
 
@@ -131,12 +131,12 @@ class DefineController extends Controller
         
         if ($owner_ == null) {
             $viewData["subtitle"] = $exact_ != 0? "'"
-            .$search_term_."' icin tanimlar":"'".$search_term_."' için arama sonuclari";
+            .$search_term_."' için tanımlar":"'".$search_term_."' için arama sonuçları";
             $defs = $exact_ != null && $exact_ != 0
                 ? WordDefinition::where('word', $search_term_)
                 : WordDefinition::where('word', 'like', $search_term_.'%');
         } else {
-            $viewData["subtitle"] = "'".$request->input("owner")."' kullanicisina ait tanimlar";
+            $viewData["subtitle"] = "'".$request->input("owner")."' kullanıcısına ait tanımlar";
             $defs = WordDefinition::where('user_id', $owner_->id);
         }
 
@@ -164,7 +164,7 @@ class DefineController extends Controller
             ->orderBy('likes_count', 'DESC')
             ->orderBy('dislikes_count', 'ASC')->paginate(PAGE_LEN);
         
-        $viewData["title"] = $viewData["subtitle"]." - Turban";
+        $viewData["title"] = $viewData["subtitle"]." - Turband";
         $viewData["search-term"] = $search_term_;
         $viewData["is_exact"] = $exact_ == 1;
         $viewData["owner"] = $owner_;
